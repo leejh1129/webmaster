@@ -20,7 +20,7 @@ import com.yedam.vo.Member;
 // http 프로토콜을 데이터 전송 수신.
 // HttpServlet 상속 기능 구현.
 
-@WebServlet("/MemberAddServlet")
+@WebServlet("/html/MemberAddServlet")
 public class MemberAddServlet extends HttpServlet {
    private static final long serialVersionUID = 1L;
 
@@ -64,6 +64,7 @@ public class MemberAddServlet extends HttpServlet {
       try {
          if (dao.insertMember(member) == 1) {
             response.getWriter().print("OK");
+            
          }
       } catch (Exception e) {
          response.getWriter().print("NO");

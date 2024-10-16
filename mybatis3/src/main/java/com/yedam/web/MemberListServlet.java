@@ -16,6 +16,8 @@ import com.yedam.common.DataSource;
 import com.yedam.dao.MemberMapper;
 import com.yedam.vo.Member;
 
+// 객체생성 -> init()
+// 객체생성 -> init() -> service() -> destroy() : 서블릿의 생명주기
 @WebServlet("/MemberListServlet")
 public class MemberListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -24,41 +26,37 @@ public class MemberListServlet extends HttpServlet {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest request, HttpServletResponse resp)
 			throws ServletException, IOException {
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 //		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=utf-8");
+		resp.setContentType("text/html;charset=utf-8");
 		
-		PrintWriter out = response.getWriter();
+		PrintWriter out = resp.getWriter();
 		
 		SqlSession sqlSession = DataSource.getInstance().openSession(true);
 		MemberMapper dao = sqlSession.getMapper(MemberMapper.class);
 		
 		List<Member> result = dao.members();
+		String str = "";
+		str += "<h3>회원정보</h3>";
+		str += "<table border='1'";
+		str += "<thead><tr><th>회원아이디</th><th>회원명</th><th>연락처</th></tr></thead>";
+		str += "<tbody>";
+		
 		for(Member member : result) {
-			response.getWriter().print(member.toString());
+		      str += "<tr>"
+		      		+ "<td><a href='member.action?mid=" + member.getMemberId() + "'>"+"</a></td>"
+		    		+ "<td>" + member.getMemberName() + "</td>"
+		    		+ "<td>" + member.getPhone() + "</td>"
+		    		+ "</tr>";
 		}
-		
-		out.print("<table style='border: 1px solid #ddd;'>");
-		for(Member member2 : result) {
-			out.print("<tr style='border: 1px solid #ddd;'>"
-					+ "<th style='border: 1px solid #ddd;'>아이디</th>"
-					+ "<th style='border: 1px solid #ddd;'>이름</th>"
-					+ "<th style='border: 1px solid #ddd;'>비밀번호</th>"
-					+ "<th style='border: 1px solid #ddd;'>휴대폰</th>"
-					+ "<th style='border: 1px solid #ddd;'>권한</th>"
-					+ "<th style='border: 1px solid #ddd;'>등록일</th></tr>");
-			out.print("<tr style='border: 1px solid #ddd;'>"
-					+"<td style='border: 1px solid #ddd;'>" + member2.getMemberId() + "</td>"
-					+ "<td style='border: 1px solid #ddd;'>" + member2.getMemberName() + "</td>"
-					+ "<td style='border: 1px solid #ddd;'>" + member2.getPassword() + "</td>"
-					+"<td style='border: 1px solid #ddd;'>" + member2.getPhone() + "</td>" 
-					+ "<td style='border: 1px solid #ddd;'>" + member2.getResponsibility() + "</td>" 
-					+ "<td style='border: 1px solid #ddd;'>" + member2.getCreationDate() + "</td>"+ "</tr>");
-		}
-		out.print("</table>");
-		
+		str += "</tbody>";
+		str += "</table>";
+		resp.getWriter().print(str);
+		str += "<a href='MemberListServlet'>목록으로</a>";
+		out.print("<a href='./'>첫페이지</a><br>");
+		out.print("<a href='/html/MemberAddServlet'>서블릿페이지로 이동</a><br>");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
