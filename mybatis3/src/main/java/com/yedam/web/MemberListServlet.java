@@ -46,7 +46,8 @@ public class MemberListServlet extends HttpServlet {
 		
 		for(Member member : result) {
 		      str += "<tr>"
-		      		+ "<td><a href='member.action?mid=" + member.getMemberId() + "'>"+"</a></td>"
+		      		+ "<td><a href='member.action?mid=" + member.getMemberId() + "'>" 
+		      		+ member.getMemberId() + "</a></td>"  // 회원아이디를 앵커 텍스트로 표시
 		    		+ "<td>" + member.getMemberName() + "</td>"
 		    		+ "<td>" + member.getPhone() + "</td>"
 		    		+ "</tr>";
