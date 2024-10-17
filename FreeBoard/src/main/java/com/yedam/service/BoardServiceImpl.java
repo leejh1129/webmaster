@@ -40,8 +40,8 @@ public class BoardServiceImpl implements BoardService {
 		// 조회 & 조회수 증가
 		mapper.updateCount(boardNo);
 		return mapper.selectBoard(boardNo);
-	
 
 	}
+
 
 }

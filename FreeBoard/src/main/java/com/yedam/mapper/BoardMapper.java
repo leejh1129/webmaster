@@ -19,5 +19,6 @@ public interface BoardMapper {
 	BoardVO selectBoard(int boardNo);
 	// 조회수 증가
 	int updateCount(int boardNo);
+	List<BoardVO> board();
 	
 }
