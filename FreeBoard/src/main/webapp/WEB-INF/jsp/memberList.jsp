@@ -6,7 +6,7 @@
     
 <jsp:include page="../includes/header.jsp"></jsp:include>   
 	
-	<h3>회원목록</h3>
+	<h3>회원목록(memberList.jsp)</h3>
 	<%
 		List<MemberVO> list = (List<MemberVO>)request.getAttribute("memberList");
 		System.out.println(list);

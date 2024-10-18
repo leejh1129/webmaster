@@ -7,6 +7,7 @@
 <%
    String msg = (String) request.getAttribute("msg");
    BoardVO board = (BoardVO) request.getAttribute("boardvo");
+   String pg = (String)request.getAttribute("page");
 %>
 <%if (msg != null) {%>
 <p style="color: red;"><%=msg %></p>
@@ -38,3 +39,10 @@
 </form>
 
 <jsp:include page="../includes/footer.jsp"></jsp:include> 
+
+<script>
+	document.querySelector('input[value="취소"]')//
+	.addEventListener('click',function(e){
+		location.href = 'boardList.do?page=<%=pg%>';
+	});
+</script>

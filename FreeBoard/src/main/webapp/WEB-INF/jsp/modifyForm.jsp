@@ -6,7 +6,13 @@
 
 <%
    String msg = (String) request.getAttribute("msg");
+   String pg = (String) request.getAttribute("page");
    BoardVO board = (BoardVO) request.getAttribute("boardvo");
+   
+   String sc = (String) request.getAttribute("searchCondition");
+   String kw = (String) request.getAttribute("keyword");
+   // 세션정보
+   String logId = (String) session.getAttribute("logId");
 %>
 <%if (msg != null) {%>
 <p style="color: red;"><%=msg %></p>
@@ -14,6 +20,9 @@
 
 <form action="modifyBoard.do" method="post">
    <input type="hidden" name="bno" value="<%=board.getBoardNo() %>">
+   <input type="hidden" name="page" value="<%=pg %>">
+   <input type="hidden" name="searchCondition" value="<%=sc %>">
+   <input type="hidden" name="keyword" value="<%=kw %>">
    <table class="table">
    <tr>
       <th>글번호</th><td><%=board.getBoardNo() %></td>
@@ -30,11 +39,22 @@
       </tr>
       <tr>
          <td colspan="4" align="center">
-            <input class="btn btn-success" type="submit" value="저장">
+            <input class="btn btn-success" type="submit" value="저장" <%=logId != null && logId.equals(board.getWriter()) ? "" : "disabled" %> >
             <input class="btn btn-danger" type="reset" value="취소">
          </td>
       </tr>
    </table>
 </form>
 
-<jsp:include page="../includes/footer.jsp"></jsp:include> 
+<jsp:include page="../includes/footer.jsp"></jsp:include>
+
+<script>
+	document.querySelector('input[value="저장"]')//
+	.addEventListener('click',function(e){
+		location.href = 'boardList.do?searchCondition=<%=sc %>&keyword=<%=kw %>&page=<%=pg%>';
+	});
+	document.querySelector('input[value="취소"]')//
+	.addEventListener('click',function(e){
+		location.href = 'boardList.do?searchCondition=<%=sc %>&keyword=<%=kw %>&page=<%=pg%>';
+	});
+</script>

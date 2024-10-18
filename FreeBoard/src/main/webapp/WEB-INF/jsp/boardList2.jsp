@@ -5,7 +5,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <jsp:include page="../includes/header.jsp"></jsp:include> 
 <h3>글목록(boardList.jsp)</h3>
 <%
@@ -43,72 +42,57 @@
 		</tr>
 	</thead>
 	<tbody>
-
-	<c:forEach var="board" items="${boardList }">
-		<tr>
-			<td><c:out value="${board.boardNo }"/></a></td>
-			<td><a href='board.do?searchCondition=${searchCondition }&keyword=${keyword }&page=${page.page }&bno=${board.boardNo}'>${board.title }</a></td>
-			<td><c:out value="${board.boardWriter }"/></td>
-			<td><fmt:formatDate value="${board.writerDate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-			<td><c:out value="${board.viewCnt }"/></td>
-		</tr>
-		</c:forEach>
-	<!-- 데이터 없으면 -no data -->
-	<%
-		if(list.size() == 0){
+	<%for (BoardVO board : list) {
+		// date포맷(2024-10-09 12:22:33)
+		String wdate = sdf.format(board.getWriteDate());
 	%>
-	<tr>
-		<td align="center" colspan="5"> - no data - </td>
-	</tr>
+		<tr>
+			<td><%=board.getBoardNo() %></a></td>
+			<td><a href='board.do?searchCondition=<%=sc %>&keyword=<%=kw %>&page=<%=paging.getPage() %>&bno=<%=board.getBoardNo() %>'><%=board.getTitle() %></a></td>
+			<td><%=board.getWriter() %></td>
+			<td><%=wdate %></td>
+			<td><%=board.getViewCnt() %></td>
+		</tr>
+		<%} %>
 	</tbody>
 </table>
 
 
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
-  	
+  
   	<!-- 이전페이지 여부 -->
-  	<c:choose>
-  		<c:when test="${page.prev }">
-  			<li class="page-item" aria-current="page">
-            <a class="page-link" href="boardList.do?page=${page.startPage -1}">Previous</a>
-  		</c:when>
-  		<c:otherwise>
-  			<li class="page-item disabled">
-      		<a class="page-link">Previous</a>
-  		</c:otherwise>
-  	</c:choose>
-    
+    <%if(paging.isPrev()) { %>
+        <li class="page-item" aria-current="page">
+              <a class="page-link" href="boardList.do?page=<%=paging.getStartPage()-1%>">Previous</a>
+    <% } else { %>
+    <li class="page-item disabled">
+      <a class="page-link">Previous</a>
+      <%} %>
+    </li>
     
     <!-- 페이지 출력 -->
-    <c:forEach var="p" begin="${page.startPage }" end="${page.endPage }" step="1">
-    	<c:choose>
-    		<c:when test="${page.page == p }">
-    			<li class="page-item active" aria-current="page">
-    			<span class="page-link">${p }</span>
-    			</li>
-    		</c:when>
-    		<c:otherwise>
-    			<li class="page-item">
-    			<a class="page-link" href="boardList.do?searchCondition=${searchCondition }&keyword=${keyword }&page=${p }">${p }</a>
-    			</li>
-    		</c:otherwise>
-    	</c:choose>
-    </c:forEach>
-   
+    <% for(int p = paging.getStartPage(); p <= paging.getEndPage(); p++){ %>
+    <%if(paging.getPage() == p) {%>
+    	<li class="page-item active" aria-current="page">
+    	<span class="page-link"><%=p %></span>
+    	</li>
+    <%}else{ %>
+    	<li class="page-item">
+    	<a class="page-link" href="boardList.do?searchCondition=<%=sc %>&keyword=<%=kw %>&page=<%=p %>"><%=p %></a>
+    	</li>
+    	<%} %>
+    <%} %>
     
     <!-- 다음페이지 여부 -->
-    <c:choose>
-  		<c:when test="${page.next }">
-  			<li class="page-item" aria-current="page">
-            <a class="page-link" href="boardList.do?page=${page.endPage +1}">Previous</a>
-  		</c:when>
-  		<c:otherwise>
-  			<li class="page-item disabled">
-      		<a class="page-link">Next</a>
-  		</c:otherwise>
-  	</c:choose>
-   
+    <%if(paging.isNext()) { %>
+        <li class="page-item" aria-current="page">
+              <a class="page-link" href="boardList.do?page=<%=paging.getEndPage()+1%>">Next</a>
+    <% } else { %>
+    <li class="page-item disabled">
+      <a class="page-link">Next</a>
+    </li>
+      <%} %>
       
   </ul>
 </nav>
