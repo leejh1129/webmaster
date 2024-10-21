@@ -48,8 +48,8 @@
 		<tr>
 			<td><c:out value="${board.boardNo }"/></a></td>
 			<td><a href='board.do?searchCondition=${searchCondition }&keyword=${keyword }&page=${page.page }&bno=${board.boardNo}'>${board.title }</a></td>
-			<td><c:out value="${board.boardWriter }"/></td>
-			<td><fmt:formatDate value="${board.writerDate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+			<td><c:out value="${board.writer }"/></td>
+			<td><fmt:formatDate value="${board.writeDate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 			<td><c:out value="${board.viewCnt }"/></td>
 		</tr>
 		</c:forEach>
@@ -60,6 +60,7 @@
 	<tr>
 		<td align="center" colspan="5"> - no data - </td>
 	</tr>
+	<%} %>
 	</tbody>
 </table>
 
