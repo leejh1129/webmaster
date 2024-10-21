@@ -40,5 +40,5 @@
   <put-attribute name="title" value="11111" />
   	<put-attribute name="body" value="/WEB-INF/jsp/{1}/{2}.jsp" />
   </definition>
-  
+
 </tiles-definitions>
