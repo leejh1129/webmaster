@@ -60,7 +60,7 @@ document.querySelectorAll('#show ul li')	// [li, li, li]
 });
 
 // document.createElement = 태그생성 
-// appendChild 태그안에 태그&값 넣기
+// appendChild 태그안에 값이 들어간 태그 넣기
 let tr = document.createElement('tr');
 
 let td = document.createElement("th");

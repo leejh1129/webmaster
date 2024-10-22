@@ -5,8 +5,8 @@
 const svc = {
 	rlist(bno = 1, successFnc, errorFnc) {	// 목록
 		// Ajax 호출
-		fetch('replyList.do?bno' + bno)
-			.then(resolve => resolve.json())
+		fetch('replyList.do?bno=' + bno)
+			.then(response => response.json())
 			.then(successFnc)
 			.catch(errorFnc)
 	}

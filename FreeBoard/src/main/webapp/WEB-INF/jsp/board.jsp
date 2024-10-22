@@ -50,7 +50,7 @@
 <table id="replyList" class="table">
 	<thead>
 		<tr>
-			<th>댓글번호</th><th>내용</th><th>작성자</th>
+			<th>댓글번호</th><th>내용</th><th>작성자</th><th>글번호</th><th>작성일</th><th>삭제</th>
 		</tr>
 	</thead>
 	<tbody></tbody>

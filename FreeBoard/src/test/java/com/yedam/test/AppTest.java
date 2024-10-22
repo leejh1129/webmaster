@@ -18,17 +18,21 @@ public class AppTest {
 		
 		ReplyService svc = new ReplyServiceImpl();
 		ReplyVO rvo = new ReplyVO();
-//		rvo.setBoardNo(126);
+//		rvo.setBoardNo(141);
 //		rvo.setReply("댓글테스트");
 //		rvo.setReplyer("1234");
-//		rvo.setReplyNo(7);
+		rvo.setReplyNo(25);
 		
 		
 		
-		svc.addReply(rvo);
-		svc.removeReply(rvo.getReplyNo());
-		
-		svc.replyList(126).forEach(reply -> System.out.println(reply));
+//		svc.addReply(rvo);
+		if(svc.removeReply(rvo.getReplyNo()) == 1) {
+			System.out.println("성공");
+		}else {
+			System.out.println("실패");
+		}
+
+//		svc.replyList(126).forEach(reply -> System.out.println(reply));
 		
 	}
 	

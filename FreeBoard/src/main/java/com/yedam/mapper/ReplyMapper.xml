@@ -3,27 +3,27 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.mapper.ReplyMapper">
-  <select id="selectList" resultType="reply">
+  <select id="selectList" resultType="reply" parameterType="reply">
  	select *
 	from tbl_reply
 	where board_no = #{boardNo}
   </select>
   
-  <delete id="deleteReply" parameterType="int">
+  <delete id="deleteReply" parameterType="reply">
   	delete from
   	tbl_reply
-  	where board_no = #{boardNo}
+  	where reply_no = #{replyNo}
   </delete>
   
-  <insert id="insertReply" parameterType="int">
+  <insert id="insertReply" parameterType="reply">
   	insert into tbl_reply(reply_no, reply, replyer, board_no)
-	values(reply_seq.nextval, #{reply}, #{replyer}, #{boardNo});
+	values(reply_seq.nextval, #{reply}, #{replyer}, #{boardNo})
   </insert>
   
   <select id="selectReply" resultType="reply">
   	select *
 	from tbl_reply
-	where board_no = #{boardNo}
+	where reply_no = #{replyNo}
   </select>
   
 </mapper>
