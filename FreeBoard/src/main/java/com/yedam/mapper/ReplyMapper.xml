@@ -40,5 +40,11 @@
 		from tbl_reply
 		where reply_no = #{replyNo}
 	</select>
+	
+	<select id="selectCount" parameterType="int">
+		select count(1)
+		from tbl_reply
+		where board_no = #{boardNo}
+	</select>
 
 </mapper>

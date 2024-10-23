@@ -26,5 +26,13 @@ const svc = {
 			.then(resolve => resolve.json())
 			.then(successFnc)
 			.catch(errorFnc)
+	},
+	// 4. 댓글카운트
+	getReplyCount(bno = 1, successFnc, errorFnc){
+		//Ajax 호출   
+		fetch('replyCount.do?bno=' + bno)
+			.then(resolve => resolve.json())
+			.then(successFnc)
+			.catch(errorFnc)
 	}
 }

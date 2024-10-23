@@ -10,5 +10,7 @@ public interface ReplyService {
 	boolean removeReply(int replyNo);			// 댓글등록
 	boolean addReply(ReplyVO reply);			// 댓글삭제
 	ReplyVO selectReply(int replyNo);		// 단건조회
+	// 댓글카운트
+	int replyCount(int boardNo);
 	
 }

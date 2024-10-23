@@ -32,5 +32,10 @@ public class ReplyServiceImpl implements ReplyService{
 	public ReplyVO selectReply(int replyNo) {
 		return mapper.selectReply(replyNo);
 	}
+	
+	@Override
+	public int replyCount(int boardNo) {
+		return mapper.selectCount(boardNo);
+	}
 
 }

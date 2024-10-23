@@ -13,5 +13,7 @@ public interface ReplyMapper {
 	boolean deleteReply(int replyNo);
 	boolean insertReply(ReplyVO reply);
 	ReplyVO selectReply(int replyNo);
+	// 댓글건수
+	int selectCount(int boardNo);
 	
 }
