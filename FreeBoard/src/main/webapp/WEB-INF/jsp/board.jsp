@@ -4,6 +4,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+    
+<<style>
+	.reply span {
+		display: inline-block;
+	}
+	.reply ul {
+		list-style-type: none;
+	}
+</style>
 <jsp:include page="../includes/header.jsp"></jsp:include> 
 <h3>상세페이지(board.jsp)</h3>
 <%
@@ -47,18 +57,37 @@
 </table>
 
 <!-- 댓글관련 -->
-<table id="replyList" class="table">
-	<thead>
-		<tr>
-			<th>댓글번호</th><th>내용</th><th>작성자</th><th>글번호</th><th>작성일</th><th>삭제</th>
-		</tr>
-	</thead>
-	<tbody></tbody>
-</table>
+<div class="container reply">
+	<!-- 댓글등록 -->
+	<div class="header">
+		댓글내용: <input class="col-sm-8" id="reply">
+		<button class="col-sm-3" id="addReply">댓글등록</button>
+	</div>
+	<!-- 댓글목록 -->
+	<div class="content">
+	 	<ul>
+			<li>
+				<span class="col-sm-2">글번호</span>
+				<span class="col-sm-5">내용</span>
+				<span class="col-sm-2">작성자</span>
+				<span class="col-sm-2">삭제</span>
+			</li>	
+			<!--<li>
+				<span class="col-sm-2">3</span>
+				<span class="col-sm-5">댓글입니다</span>
+				<span class="col-sm-2">user01</span>
+				<span class="col-sm-2"><button>삭제</button></span>
+			</li> -->
+		</ul>
+	</div>
+	<!-- 댓글페이징 -->
+</div>
 <jsp:include page="../includes/footer.jsp"></jsp:include> 
 
 
 <script>
+	const bno = "${boardvo.boardNo }"; console.log(bno);
+	const logId = "${logId }"; console.log(logId);
 	document.querySelector('input[value="수정"]')//
 	.addEventListener('click',function(e){
 		location.href = 'modifyBoard.do?searchCondition=<%=sc %>&keyword=<%=kw %>&page=<%=pg%>&bno=<%=bvo.getBoardNo() %>';

@@ -81,3 +81,8 @@ function deleteRowFnc(e) {
 	 })
 	 .catch(err => console.log(err))
 }
+
+function deleteRow(e){
+	let rno = e.target.parentElement.parentElement.firstElementChild.innerText;
+	console.log(rno);
+}

@@ -26,11 +26,11 @@ public class AppTest {
 		
 		
 //		svc.addReply(rvo);
-		if(svc.removeReply(rvo.getReplyNo()) == 1) {
-			System.out.println("성공");
-		}else {
-			System.out.println("실패");
-		}
+//		if(svc.removeReply(rvo.getReplyNo()) == 1) {
+//			System.out.println("성공");
+//		}else {
+//			System.out.println("실패");
+//		}
 
 //		svc.replyList(126).forEach(reply -> System.out.println(reply));
 		
