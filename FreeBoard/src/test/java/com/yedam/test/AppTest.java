@@ -1,38 +1,31 @@
 package com.yedam.test;
 
-import java.util.List;
-
-import org.apache.ibatis.session.SqlSession;
-
-import com.yedam.common.DataSource;
-import com.yedam.common.SearchDTO;
-import com.yedam.mapper.BoardMapper;
-import com.yedam.service.ReplyService;
-import com.yedam.service.ReplyServiceImpl;
-import com.yedam.vo.BoardVO;
-import com.yedam.vo.ReplyVO;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.yedam.service.BoardService;
+import com.yedam.service.BoardServiceImpl;
+import com.yedam.vo.EventVO;
 
 public class AppTest {
 
 	public static void main(String[] args) {
 		
-		ReplyService svc = new ReplyServiceImpl();
-		ReplyVO rvo = new ReplyVO();
-//		rvo.setBoardNo(141);
-//		rvo.setReply("댓글테스트");
-//		rvo.setReplyer("1234");
-		rvo.setReplyNo(25);
-		
-		
-		
-//		svc.addReply(rvo);
-//		if(svc.removeReply(rvo.getReplyNo()) == 1) {
+//		BoardService svc = new BoardServiceImpl();
+//		EventVO evo = new EventVO();
+//		
+//		evo.setTitle("Test");
+//		evo.setStartDate("2024-10-17");
+//		
+//		if(svc.registerEvent(evo)) {
 //			System.out.println("성공");
 //		}else {
 //			System.out.println("실패");
 //		}
-
-//		svc.replyList(126).forEach(reply -> System.out.println(reply));
+		
+		
+//		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//		String json = gson.toJson(result);
+		
 		
 	}
 	
