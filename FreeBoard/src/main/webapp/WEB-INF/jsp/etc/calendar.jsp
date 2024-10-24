@@ -39,7 +39,7 @@
         var title = prompt('Event Title:');
         if (title) {
         	console.log(arg);
-        	fetch('addEvent.do?title='+ title+'&start='+ arg.startStr +'&end='+ arg.endStr)
+        	fetch('addEvent.do?title='+ title +'&start='+ arg.startStr +'&end='+ arg.endStr)
         	.then(resolve => resolve.json())
         	.then(result => {
         		console.log(result);
@@ -54,30 +54,38 @@
         			aler('등록 에러')
         		}
         	})
-          calendar.addEvent({
-            title: title,
-            start: arg.startStr,
-            end: arg.endStr,
-            allDay: arg.allDay
-          })
+        	.catch(err => console.log(err));
         }
         calendar.unselect()
       },
       eventClick: function(arg) {
+    	  console.log(arg);
         if (confirm('Are you sure you want to delete this event?')) {
-        	fetch('')
+        	fetch('removeEvent.do?title='+ arg.event.title)
         	.then(resolve => resolve.json())
         	.then(result => {
-        		console.log(arg);
+        		
         	})
           arg.event.remove()
         }
       },
+      eventDrop: function(info) {
+    	  console.log(info);
+    	    if (!confirm("Are you sure about this change?")) {
+    	    	info.revert();    	    	
+    	    }else{
+    	    	fetch('modifyEvent.do?title='+ info.event.title +'&start='+ info.event.startStr +'&end='+ info.event.endStr)
+    	    	.then(resolve => resolve.json())
+    	    	.then(result => {
+    	    		
+    	    	})
+    	    }
+    	  },
       editable: true,
       dayMaxEvents: true, // allow "more" link when too many events
       events: eventData
-    });
-
+ 
+    });						
     calendar.render();
     
 	});

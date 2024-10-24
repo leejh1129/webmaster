@@ -128,6 +128,19 @@
 		insert into tbl_event (title, start_date, end_date)
 		values(#{title}, #{startDate}, #{endDate})
 	</insert>
+	
+	<delete id="deleteEvent" parameterType="com.yedam.vo.EventVO">
+		delete from
+		tbl_event
+		where title = #{title}
+	</delete>
+	
+	<update id="updateEvent" parameterType="com.yedam.vo.EventVO">
+		update tbl_event
+		set start_date = #{startDate}
+			,end_date = #{endDate}
+		where title = #{title}
+	</update>
 
 
 

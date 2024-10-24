@@ -10,17 +10,17 @@ public class AppTest {
 
 	public static void main(String[] args) {
 		
-//		BoardService svc = new BoardServiceImpl();
-//		EventVO evo = new EventVO();
-//		
-//		evo.setTitle("Test");
-//		evo.setStartDate("2024-10-17");
-//		
-//		if(svc.registerEvent(evo)) {
-//			System.out.println("성공");
-//		}else {
-//			System.out.println("실패");
-//		}
+		BoardService svc = new BoardServiceImpl();
+		EventVO evo = new EventVO();
+		evo.setTitle("캠핑");
+		evo.setStartDate("2024-10-17");
+		evo.setEndDate("2024-10-19");
+		
+		if(svc.modifyEvent(evo)) {
+			System.out.println("성공");
+		}else {
+			System.out.println("실패");
+		}
 		
 		
 //		Gson gson = new GsonBuilder().setPrettyPrinting().create();

@@ -24,10 +24,6 @@ public class AddEventControl implements Control {
 		String startData = req.getParameter("start");
 		String endData = req.getParameter("end");
 		
-		System.out.println("title = " + title);
-		System.out.println("std = " + startData);
-		System.out.println("end = " + endData);
-		
 		EventVO evo = new EventVO();
 		evo.setTitle(title);
 		evo.setStartDate(startData);

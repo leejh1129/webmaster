@@ -17,6 +17,8 @@ import com.yedam.control.ChartControl;
 import com.yedam.control.CountWriterCont;
 import com.yedam.control.EventControl;
 import com.yedam.control.JavaScriptCont;
+import com.yedam.control.RemoveEventControl;
+import com.yedam.control.modifyEventControl;
 import com.yedam.control.board.AddBoardControl;
 import com.yedam.control.board.AddBoardForm;
 import com.yedam.control.board.BoardControl;
@@ -91,8 +93,14 @@ public class FrontController extends HttpServlet{
 		// 달력
 		map.put("/calendar.do", new CalendarCont());
 		map.put("/eventList.do", new EventControl());
+		// 달력 추가
 		map.put("/addEvent.do", new AddEventControl());
-	}
+		
+		// 달력 삭제
+		map.put("/removeEvent.do", new RemoveEventControl());
+		// 달력 수정
+		map.put("/modifyEvent.do", new modifyEventControl());
+		}
 	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

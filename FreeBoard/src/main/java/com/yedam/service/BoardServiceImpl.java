@@ -63,7 +63,17 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Override
 	public boolean registerEvent(EventVO evo) {
-		return mapper.insertEvent(evo);
+		return mapper.insertEvent(evo) == 1;
+	}
+	
+	@Override
+	public boolean removeEvent(EventVO evo) {
+		return mapper.deleteEvent(evo) == 1;
+	}
+	
+	@Override
+	public boolean modifyEvent(EventVO evo) {
+		return mapper.updateEvent(evo) == 1;
 	}
 
 

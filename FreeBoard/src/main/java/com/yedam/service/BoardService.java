@@ -21,6 +21,8 @@ public interface BoardService {
 	List<Map<String, Object>> countByWriter();
 	List<Map<String, Object>> Calendar();
 	boolean registerEvent(EventVO evo);
+	boolean removeEvent(EventVO evo);
+	boolean modifyEvent(EventVO evo);
 	
 	
 }

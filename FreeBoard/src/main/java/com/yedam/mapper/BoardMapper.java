@@ -28,6 +28,7 @@ public interface BoardMapper {
 	List<Map<String, Object>> countByWriter();
 	List<Map<String, Object>> Calendar();
 	// 등록
-	boolean insertEvent(EventVO evo);
-	
+	int insertEvent(EventVO evo);
+	int deleteEvent(EventVO evo);
+	int updateEvent(EventVO evo);
 }
