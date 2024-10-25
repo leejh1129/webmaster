@@ -6,9 +6,7 @@
 <meta charset='utf-8' />
 <script src='dist/index.global.js'></script>
 <script>
-  
-  let modalArg = null;	// arg 공유할 목적
-  let calendar = null;
+
   document.addEventListener('DOMContentLoaded', async function() {
     var calendarEl = document.getElementById('calendar');
 	
@@ -27,7 +25,7 @@
     									//.catch(err => console.log(err)); */
     
     // 값을 할당한 후에 실행
-   calendar = new FullCalendar.Calendar(calendarEl, {
+    var calendar = new FullCalendar.Calendar(calendarEl, {
       headerToolbar: {
         left: 'prev,next today',
         center: 'title',
@@ -38,11 +36,26 @@
       selectable: true,
       selectMirror: true,
       select: function(arg) {
-      // var title = prompt('Event Title:');
-        //if (title) {
-    	  modalShow(arg);
+        var title = prompt('Event Title:');
+        if (title) {
         	console.log(arg);
-    	  
+        	fetch('addEvent.do?title='+ title +'&start='+ arg.startStr +'&end='+ arg.endStr)
+        	.then(resolve => resolve.json())
+        	.then(result => {
+        		console.log(result);
+        		if(result.retCode == "OK"){
+        			calendar.addEvent({
+        				title: title,
+        				start: arg.startStr,
+        				end: arg.endStr,
+        				allDay: arg.allDay
+        			})
+        		}else if(result.retCode == 'FAIL'){
+        			aler('등록 에러')
+        		}
+        	})
+        	.catch(err => console.log(err));
+        }
         calendar.unselect()
       },
       eventClick: function(arg) {
@@ -97,33 +110,6 @@ body {
 <body>
 
 	<div id='calendar'></div>
-	
-	<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="modalClose()"></button>
-      </div>
-      <div class="modal-body">
-        <!-- title, startStr, endStr -->
-        타이틀: <input type="text" id="title"><br>
-        시작일시: <input type="date" id="start" onchange="startChange(event)"><br>
-        종료일시: <input type="date" id="end" onchange="endChange(event)"><br>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="modalClose()">Close</button>
-        <button type="button" class="btn btn-primary" onclick="modalSave()">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-	<script src="js/calendarModal.js"></script>
 </body>
 </html>
