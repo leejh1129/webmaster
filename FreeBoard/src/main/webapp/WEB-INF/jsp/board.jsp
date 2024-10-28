@@ -112,6 +112,8 @@ String kw = (String) request.getAttribute("keyword");
 <script>
 	const bno = "${boardvo.boardNo }"; console.log(bno);
 	const logId = "${logId }"; console.log(logId);
+	const reply = "${reply }"; console.log(reply);
+	const replyer = "${replyer }"; console.log(reply);
 	document.querySelector('input[value="수정"]')//
 	.addEventListener('click',function(e){
 		location.href = 'modifyBoard.do?searchCondition=<%=sc%>&keyword=<%=kw%>&page=<%=pg%>&bno=<%=bvo.getBoardNo()%>';
@@ -123,5 +125,7 @@ String kw = (String) request.getAttribute("keyword");
 	}); --%>
 </script>
 
-<script src="js/replyService.js"></script>
-<script src="js/reply.js"></script>
+<!-- <script src="js/replyService.js"></script>
+<script src="js/reply.js"></script>  -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="js/jreply.js"></script>
