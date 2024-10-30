@@ -17,16 +17,16 @@ public class ProductControl implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		String code = req.getParameter("code");
-		
-		ProductVO pvo = new ProductVO();
-		pvo.setPrdCode(code);
-		
 		ProductService svc = new ProductServiceImpl();
-		List<ProductVO> list = (List<ProductVO>)svc.select(pvo);
-		
-		
-		req.getRequestDispatcher("/WEB-INF/jsp/productInfo.jsp").forward(req, resp);
+	    String code = req.getParameter("code");
+	    
+	    List<ProductVO> list = svc.selectStar();
+
+	    ProductVO pvo = svc.select(code);
+	    req.setAttribute("productvo", pvo);
+	    req.setAttribute("productlist", list);
+
+	    req.getRequestDispatcher("productInfo.tiles").forward(req, resp);
 
 	}
 

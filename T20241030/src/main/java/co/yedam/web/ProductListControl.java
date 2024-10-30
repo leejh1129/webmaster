@@ -22,7 +22,7 @@ public class ProductListControl implements Control {
 		
 		req.setAttribute("productvo", pvo);
 		
-		req.getRequestDispatcher("/WEB-INF/jsp/productList.jsp").forward(req, resp);
+		req.getRequestDispatcher("productList.tiles").forward(req, resp);
 		
 	}
 

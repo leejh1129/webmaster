@@ -9,6 +9,7 @@ public interface ProductMapper {
 	String selectHint(String remainTimeString);
 	
 	List<ProductVO> selectAll();
-	List<ProductVO> select(ProductVO vo);
+	ProductVO select(String code);
+	List<ProductVO> selectStar();
 
 }

@@ -18,18 +18,24 @@
 	  from dual
 	</select>
 	
-	<select id="selectAll" resultType="co.yedam.vo.ProductVO">
+	<select id="selectAll" resultType="product">
 		select * 
 		from product_tbl
 	</select>
 	
-	<select id="select" resultType="co.yedam.vo.ProductVO">
-		select prd_name,
-		       prd_desc,
-		       prod_image,
-		       prd_code
+	<select id="select" resultType="product" parameterType="string">
+		select *
 		from product_tbl
 		where prd_code = #{prdCode}
+	</select>
+	
+	<select id="selectStar" resultType="product">
+		select * 
+		from product_tbl
+		<![CDATA[		
+		where rownum < 5
+		]]>
+		order by star_point desc
 	</select>
 
 </mapper>
